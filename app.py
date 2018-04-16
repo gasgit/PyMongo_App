@@ -1,4 +1,11 @@
 from pymongo import MongoClient
+import pprint
+
+
+
+# MongoDB
+# Create Database called 'Doc_Repo'
+# Create collection called 'mydocuments'
 
 
 try:
@@ -6,6 +13,7 @@ try:
     print("Connected Sucessfully To Server!")
     print(client)
     db = client.Doc_Repo
+
 except Exception, e:
     print(e)
 
@@ -20,7 +28,7 @@ def insert_doc():
 
         print("Thank you!")
 
-        db.Doc_Repo.insert_one({
+        db.mydocuments.insert_one({
             "name": name,
             "email": email,
             "phone": phone,
@@ -36,7 +44,7 @@ def insert_doc():
 
 def find_all():
     try:
-        entries = db.Doc_Repo.find()
+        entries = db.mydocuments.find()
         for e in entries:
             print(e)
     except Exception, ex:
@@ -45,13 +53,13 @@ def find_all():
 
 
 def find_name():
-    result = db.Doc_Repo.find_one({"name": "glen"})
+    result = db.mydocuments.find_one({"name": "glen"})
     print(result)
     
 
 
-# insert_doc()
+#insert_doc()
 
-# find_all()
+#find_all()
 
 find_name()
