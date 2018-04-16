@@ -1,12 +1,8 @@
 from pymongo import MongoClient
-import pprint
-
-
 
 # MongoDB
-# Create Database called 'Doc_Repo'
+# Connect to Database called 'Doc_Repo'
 # Create collection called 'mydocuments'
-
 
 try:
     client = MongoClient('localhost:27017')
@@ -14,9 +10,19 @@ try:
     print(client)
     db = client.Doc_Repo
 
-except Exception, e:
-    print(e)
+    mycollection = "mydocuments"
 
+    allcollections = db.collection_names()
+    if not mycollection in allcollections:
+        db.create_collection(mycollection)
+        print(mycollection + " Collection Created :)")
+    else:
+        print(mycollection + " Already exists!")
+except Exception, ex:
+    print(ex)
+
+# Get input from user
+# Insert into mydocuments collection
 
 def insert_doc():
     
@@ -34,13 +40,12 @@ def insert_doc():
             "phone": phone,
             "dob": dob
         })
-        print("Document Inserted")
+        print("Document Inserted")  
+    except Exception, ex:
+        print(ex)
 
-      
-    except Exception, e:
-        print(e)
-
-
+# Get all entries to mydocuments collection
+# Iterate and print
 
 def find_all():
     try:
@@ -50,16 +55,15 @@ def find_all():
     except Exception, ex:
         print(ex)
 
-
-
+# Get single document from mydocuments coollection
 def find_name():
     result = db.mydocuments.find_one({"name": "glen"})
     print(result)
     
 
 
-#insert_doc()
+insert_doc()
 
 #find_all()
 
-find_name()
+#find_name()
