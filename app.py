@@ -14,7 +14,6 @@ def menu():
         print("\n1. Insert\n2. Find All\n3. Insert Many\n4. Less\n5. Delete All\n6. Get Input")
         
         choice = raw_input("Select: " )
-
         if choice == "1":
             insert_doc()
         elif choice == "2":
